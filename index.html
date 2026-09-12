@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLOOD-NAV · Real-Time Flood Route Optimization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <span class="brand-ic">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M5 12l4-5 3 3 4-6 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>FLOOD<span class="brand-accent">-NAV</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#problem">Problema</a>
+      <a href="#ruta">Ruta</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#panahon">Panahon</a>
+      <a href="#tulong">Tulong</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost">Mag-sign in</button>
+      <button class="btn btn-primary" id="demoBtn">Subukan ang Demo</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy reveal">
+      <span class="badge">
+        <span class="pulse"></span> IoT-Integrated · Real-Time · Nationwide
+      </span>
+      <h1>Ligtas na byahe,<br><span class="grad">kahit bumaha.</span></h1>
+      <p class="sub">Ang PHP flood disaster ay nag-uuwian ng libu-libong commuter. Ang <strong>FLOOD-NAV</strong> ay nagpapakita ng live na lalim ng baha at awtomatikong nagrerecommend ng mas ligtas at mas mabilis na ruta — para sa bawat siyudad, bawat araw ng ulan.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#screens">Tingnan ang Mapa
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-glass btn-lg" href="#tech">Paano ito gumagana</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>1,200+</strong><span>IoT Sensors</span></div>
+        <div class="stat"><strong>&lt;60 sec</strong><span>Alerts na real-time</span></div>
+        <div class="stat"><strong>100%</strong><span>Libre para sa commuter</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="glow-grad"></div>
+      <!-- HOME SCREEN MOCKUP -->
+      <div class="mockup lg">
+        <div class="m-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="m-url">floodnav.ph/home</div>
+        </div>
+        <div class="app screen-home">
+          <div class="ah">
+            <div class="a-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round" opacity=".45"/><path d="M5 12l4-5 3 3 4-6 3 4" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> FLOOD<em>-NAV</em></div>
+            <div class="a-bell"><span class="notif"></span><svg viewBox="0 0 24 24" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8m6 12a2 2 0 0 1-4 0" stroke="#0b1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="search"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#94a3b8" stroke-width="2"/><path d="m20 20-3-3" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg><span>Saan ka papunta?</span></div>
+          <div class="legend">
+            <span><i class="lg-s g"></i>Ligtas</span>
+            <span><i class="lg-s y"></i>0.5m</span>
+            <span><i class="lg-s o"></i>1m</span>
+            <span><i class="lg-s r"></i>1m+</span>
+            <span class="live"><i class="pulse"></i>LIVE</span>
+          </div>
+          <div class="map-wrap">
+            <svg class="svg-map" viewBox="0 0 360 190" preserveAspectRatio="xMidYMid slice">
+              <rect width="360" height="190" fill="#eaf1f8"/>
+              <path d="M0 40h360M0 90h360M0 140h360M40 0v190M120 0v190M210 0v190M300 0v190" stroke="#ffffff" stroke-width="10"/>
+              <path d="M-10 60c60 40 90-20 380 30" stroke="#ffffff" stroke-width="9"/>
+              <path d="M-10 120c80-30 60 60 380 10" stroke="#ffffff" stroke-width="9"/>
+              <ellipse cx="250" cy="60" rx="52" ry="34" fill="#ef4444" opacity=".22"/>
+              <ellipse cx="150" cy="120" rx="46" ry="30" fill="#f59e0b" opacity=".25"/>
+              <ellipse cx="255" cy="145" rx="40" ry="26" fill="#10b981" opacity=".2"/>
+              <ellipse cx="60" cy="70" rx="42" ry="28" fill="#84cc16" opacity=".25"/>
+              <g class="pin" transform="translate(238,42)">
+                <path d="M0 -2c-9 0-16 7-16 16 0 11 14 22 16 24 2-2 16-13 16-24 0-9-7-16-16-16z" fill="#ef4444"/>
+                <circle cx="0" cy="14" r="6" fill="#fff"/>
+              </g>
+              <g class="pin" transform="translate(150,104)">
+                <path d="M0 -2c-9 0-16 7-16 16 0 11 14 22 16 24 2-2 16-13 16-24 0-9-7-16-16-16z" fill="#f59e0b"/>
+                <circle cx="0" cy="14" r="6" fill="#fff"/>
+              </g>
+              <g class="pin" transform="translate(60,56)">
+                <path d="M0 -2c-8 0-14 6-14 14 0 10 12 20 14 21 2-1 14-11 14-21 0-8-6-14-14-14z" fill="#84cc16"/>
+                <circle cx="0" cy="12" r="5" fill="#fff"/>
+              </g>
+              <g transform="translate(258,92)">
+                <rect x="-34" y="-14" rx="10" width="68" height="22" fill="#0b1220"/>
+                <text x="0" y="2" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">1.2m · tumataas</text>
+              </g>
+            </svg>
+          </div>
+          <div class="alert-card">
+            <span class="alert-ico">⚠</span>
+            <div><strong>Pagbaha sa EDSA–Balintawak</strong><br><span class="muted">1.2 m · na-update 2 min na ang nakalipas</span></div>
+          </div>
+          <button class="cta">Maghanap ng Ruta <span>→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="sec-head reveal">
+    <span class="kicker">Ang Suliranin · National Issue</span>
+    <h2>Pagbaha: ang sakit ng bansang Pilipinas.</h2>
+    <p>Taon-taon, bilyon ang nalulugi at daan-libong commuter ang naghihirap dahil sa pagbaha. Ngunit ang totoo, ang ugat nito ay hindi lang ang klima — kundi ang kakulangan ng maayos na flood control sa ating bansa.</p>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card reveal">
+      <div class="prob-ic">🌊</div>
+      <h3>Ano ang problema?</h3>
+      <p>Walang sapat na <strong>flood control system</strong> ang Pilipinas. Kakaunti ang pumping stations, barado ang mga drainage, at kulang ang mga dike at retention pond. Dahil dito, ang bawat malakas na ulan ay nagiging malawakang pagbaha na nakakapagpaparatang ng mga kalsada at nakakaabala sa libu-libong biyahe araw-araw.</p>
+      <div class="stat-mini"><b>₱100B+</b><span>taunang pagkalugi sa ekonomiya</span></div>
+    </div>
+
+    <div class="prob-card reveal">
+      <div class="prob-ic">👥</div>
+      <h3>Sino ang naapektuhan?</h3>
+      <p>Araw-araw ay <strong>mga 5 milyong commuter</strong> sa Metro Manila ang maaaring ma-stranded at ma-late sa trabaho dahil sa pagbaha. Naapektuhan din ang mga driver, siklista, estudyante, at manggagawa — lalo na sa mga flood-prone na siyudad tulad ng Marikina, Pasig, at Valenzuela.</p>
+      <div class="stat-mini"><b>5M+</b><span>commuter na naapektuhan kada tag-ulan</span></div>
+    </div>
+
+    <div class="prob-card reveal">
+      <div class="prob-ic">🧠</div>
+      <h3>Ano ang root cause?</h3>
+      <p>Hindi sapat ang tulong na nagagawa ng mga <strong>lumang ilog at estero na puno ng basura</strong>, ang mahinang urban planning, at ang mabagal na paggawa ng mga imprastraktura tulad ng floodwalls at dams. Dinagdag pa ito ng climate change na nagpapalakas sa mga bagyo, at ang kawalan ng <strong>real-time na warning system</strong> na dapat sana'y nagbababala sa publiko nang maaga. Ang sinisisi kasi ay ang baha mismo, hindi ang sistema — kaya paulit-ulit ang parehong problema.</p>
+      <div class="stat-mini"><b>30%</b><span>ng Metro Manila ay madaling lumubog kapag bumaha</span></div>
+    </div>
+
+    <div class="prob-card reveal">
+      <div class="prob-ic">⏱</div>
+      <h3>Bakit kailangan itong solusyunan?</h3>
+      <p>Hangga't hindi pa tapos ang malalaking proyektong flood control, kailangan ng pang-araw-araw na solusyon. Ang pagbibigay sa commuter ng <strong>tamang impormasyon sa tamang oras</strong> (real-time lalim ng baha at ligtas na ruta) ay makapagliligtas ng buhay, makababawas sa pagkalugi, at makapagpapatuloy ng ekonomiya kahit maulan. Hindi natin kaya baguhin ang panahon — kayang-kaya nating maging handa para dito.</p>
+      <div class="stat-mini"><b>&lt;60 sec</b><span>alerts na makapagliligtas ng buhay at pera</span></div>
+    </div>
+  </div>
+
+  <div class="prob-banner reveal">
+    <strong>Ang FLOOD-NAV ay hindi nagpapalit sa flood control —</strong>
+    <span>ito ang tulay habang inaayos pa ito: pinagsasama nito ang IoT sensors, real-time data, at dynamic routing para hindi na ma-stranded ang commuter kahit bumaha.</span>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section class="screens" id="screens">
+  <div class="sec-head reveal">
+    <span class="kicker">UI / UX Wireframes</span>
+    <h2>Limang screen, isang ligtas na biyahe.</h2>
+    <p>Mula sa live flood map hanggang sa emergency help — ang bawat interface ay idinisenyo para sa accessibility ng ordinaryong commuter.</p>
+  </div>
+
+  <div class="grid">
+
+    <article class="card reveal" id="alerts">
+      <div class="mockup">
+        <div class="m-bar"><div class="dots"><span></span><span></span><span></span></div><div class="m-url">floodnav.ph/alerts</div></div>
+        <div class="app screen-alerts">
+          <div class="s-h">Alerts sa Pagbaha</div>
+          <div class="mini-map">
+            <svg viewBox="0 0 300 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="300" height="70" fill="#eaf1f8"/>
+              <rect x="200" y="8" width="110" height="26" rx="8" fill="#ef4444" opacity=".7"/>
+              <rect x="20" y="36" width="110" height="26" rx="8" fill="#f59e0b" opacity=".7"/>
+              <rect x="120" y="12" width="70" height="22" rx="8" fill="#10b981" opacity=".6"/>
+              <circle cx="250" cy="21" r="4" fill="#fff"/>
+              <circle cx="70" cy="48" r="4" fill="#fff"/>
+              <circle cx="148" cy="22" r="4" fill="#fff"/>
+            </svg>
+            <span class="live-badge"><i class="pulse"></i>Live</span>
+          </div>
+          <div class="alert-row red"><span class="a-tag">ALERTO</span><div><strong>Quiapo, 1.5 m</strong><span>Malalim na baha · 10 min ang nakalipas</span></div><i class="sensor">S-041</i></div>
+          <div class="alert-row orange"><span class="a-tag">Babala</span><div><strong>Marikina, 0.9 m</strong><span>Umaangat ang tubig · 4 min ang nakalipas</span></div><i class="sensor">S-118</i></div>
+          <div class="alert-row yellow"><span class="a-tag">Info</span><div><strong>Katipunan Ave, 0.4 m</strong><span>Mababaw · 1 min ang nakalipas</span></div><i class="sensor">S-203</i></div>
+          <button class="cta cta-outline">+ I-report ang Baha</button>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="tag tag-red">Screen 3 · Flood Alerts</span>
+        <h3>Real-time na babala, sensor-level accuracy</h3>
+        <p>IoT sensors + community reports = alerts na may lalim, sensor ID, at oras ng update.</p>
+      </div>
+    </article>
+
+    <article class="card reveal" id="ruta">
+      <div class="mockup">
+        <div class="m-bar"><div class="dots"><span></span><span></span><span></span></div><div class="m-url">floodnav.ph/ruta</div></div>
+        <div class="app screen-ruta">
+          <div class="s-h">Pumili ng Ruta <span class="s-sub">· BGC → Quiapo</span></div>
+          <div class="route-card selected">
+            <div class="rc-head"><span class="rc-badge green">A · Pinaka-ligtas</span><span class="rc-time">45 min</span></div>
+            <div class="rc-bar"><i class="dot-green"></i>—<i class="dot-amber"></i></div>
+            <span class="rc-note">Iniiwasan ang 3 baha · 12.4 km</span>
+          </div>
+          <div class="route-card">
+            <div class="rc-head"><span class="rc-badge blue">B · Pinakamabilis</span><span class="rc-time">35 min</span></div>
+            <div class="rc-bar"><i class="dot-green"></i>—<i class="dot-red"></i></div>
+            <span class="rc-note">Tumatawid sa 0.3 m na bath · 9.8 km</span>
+          </div>
+          <div class="route-card">
+            <div class="rc-head"><span class="rc-badge amber">C · Alternatibo</span><span class="rc-time">55 min</span></div>
+            <div class="rc-bar"><i class="dot-green"></i>—<i class="dot-green"></i></div>
+            <span class="rc-note">Walang baha · 16.1 km</span>
+          </div>
+          <button class="cta">Simulan ang Byahe <span>→</span></button>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="tag tag-blue">Screen 2 · Reroute Selection</span>
+        <h3>Dynamic na ruta, awtomatiko</h3>
+        <p>Kapag tumaas ang baha, agad na nagbabago ang rekomendasyon — Route A, B, o C ang pipiliin mong takbuhin.</p>
+      </div>
+    </article>
+
+    <article class="card reveal" id="panahon">
+      <div class="mockup">
+        <div class="m-bar"><div class="dots"><span></span><span></span><span></span></div><div class="m-url">floodnav.ph/panahon</div></div>
+        <div class="app screen-weather">
+          <div class="s-h">Taya ng Panahon &amp; Ulan</div>
+          <div class="w-main"><span class="w-emoji">🌧</span><div><strong>Malakas na ulan</strong><span>Metro Manila · kalagitnaan ng hapon</span></div></div>
+          <div class="w-bars">
+            <div class="wb-col"><b>8A</b><i class="bar h10"></i></div>
+            <div class="wb-col"><b>10A</b><i class="bar h25"></i></div>
+            <div class="wb-col"><b>12P</b><i class="bar h40"></i></div>
+            <div class="wb-col"><b>2P</b><i class="bar h70"></i></div>
+            <div class="wb-col"><b>4P</b><i class="bar h100"></i></div>
+            <div class="wb-col"><b>6P</b><i class="bar h80"></i></div>
+          </div>
+          <div class="w-peak"><strong>Peak ng ulan</strong><span>3:00 PM – 5:00 PM · push alert 10 min bago</span></div>
+          <div class="w-risk"><strong>Flood risk</strong><span>Maaaring bumaha sa mababang lupain pagkalipas ng 1 oras</span><span class="badge-sm">PAGASA API</span></div>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="tag tag-sky">Screen 4 · Weather &amp; Rain Forecast</span>
+        <h3>Maging ready bago pa man umulan</h3>
+        <p>Forecast mula sa PAGASA + IoT rain sensors. Alamin kung kailan bubuhos nang malakas at saang purok posibleng bumaha.</p>
+      </div>
+    </article>
+
+    <article class="card reveal" id="tulong">
+      <div class="mockup">
+        <div class="m-bar"><div class="dots"><span></span><span></span><span></span></div><div class="m-url">floodnav.ph/tulong</div></div>
+        <div class="app screen-help">
+          <div class="s-h">Tulong para sa Commuter</div>
+          <div class="h-grid">
+            <div class="tile"><span class="tile-ic">📷</span><strong>I-report ang Baha</strong><span>Larawan + lalim</span></div>
+            <div class="tile"><span class="tile-ic">📍</span><strong>Evacuation Center</strong><span>Pinakamalapit · ETA</span></div>
+            <div class="tile"><span class="tile-ic">🆘</span><strong>Emergency Numbers</strong><span>911 · NDRRMC · BFP</span></div>
+            <div class="tile"><span class="tile-ic">💡</span><strong>Safety Tips</strong><span>Bago lumusong</span></div>
+          </div>
+          <div class="share-row"><span>Ang lokasyon ko</span><strong>I-share sa pamilya</strong><span class="share-btn">Share</span></div>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="tag tag-green">Screen 5 · Commuter Help Tools</span>
+        <h3>Higit pa sa mapa</h3>
+        <p>Community reports, evacuation centers, emergency hotlines, at safety tips — lahat sa isang pindot.</p>
+      </div>
+    </article>
+
+    <article class="card reveal" id="home-mock">
+      <div class="mockup">
+        <div class="m-bar"><div class="dots"><span></span><span></span><span></span></div><div class="m-url">floodnav.ph/home</div></div>
+        <div class="app screen-home">
+          <div class="ah">
+            <div class="a-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round" opacity=".45"/><path d="M5 12l4-5 3 3 4-6 3 4" stroke="#0ea5e9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> FLOOD<em>-NAV</em></div>
+            <div class="a-bell"><span class="notif"></span><svg viewBox="0 0 24 24" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8m6 12a2 2 0 0 1-4 0" stroke="#0b1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="search"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#94a3b8" stroke-width="2"/><path d="m20 20-3-3" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg><span>Saan ka papunta?</span></div>
+          <div class="legend">
+            <span><i class="lg-s g"></i>Ligtas</span>
+            <span><i class="lg-s y"></i>0.5m</span>
+            <span><i class="lg-s o"></i>1m</span>
+            <span><i class="lg-s r"></i>1m+</span>
+            <span class="live"><i class="pulse"></i>LIVE</span>
+          </div>
+          <div class="map-wrap">
+            <svg class="svg-map" viewBox="0 0 360 150" preserveAspectRatio="xMidYMid slice">
+              <rect width="360" height="150" fill="#eaf1f8"/>
+              <path d="M0 40h360M0 90h360M0 140h360M40 0v190M120 0v190M210 0v190M300 0v190" stroke="#ffffff" stroke-width="10"/>
+              <path d="M-10 60c60 40 90-20 380 30" stroke="#ffffff" stroke-width="9"/>
+              <path d="M-10 120c80-30 60 60 380 10" stroke="#ffffff" stroke-width="9"/>
+              <ellipse cx="250" cy="60" rx="52" ry="34" fill="#ef4444" opacity=".22"/>
+              <ellipse cx="150" cy="120" rx="46" ry="30" fill="#f59e0b" opacity=".25"/>
+              <ellipse cx="255" cy="145" rx="40" ry="26" fill="#10b981" opacity=".2"/>
+              <ellipse cx="60" cy="70" rx="42" ry="28" fill="#84cc16" opacity=".25"/>
+              <g class="pin" transform="translate(238,42)"><path d="M0 -2c-9 0-16 7-16 16 0 11 14 22 16 24 2-2 16-13 16-24 0-9-7-16-16-16z" fill="#ef4444"/><circle cx="0" cy="14" r="6" fill="#fff"/></g>
+              <g class="pin" transform="translate(150,104)"><path d="M0 -2c-9 0-16 7-16 16 0 11 14 22 16 24 2-2 16-13 16-24 0-9-7-16-16-16z" fill="#f59e0b"/><circle cx="0" cy="14" r="6" fill="#fff"/></g>
+              <g class="pin" transform="translate(60,56)"><path d="M0 -2c-8 0-14 6-14 14 0 10 12 20 14 21 2-1 14-11 14-21 0-8-6-14-14-14z" fill="#84cc16"/><circle cx="0" cy="12" r="5" fill="#fff"/></g>
+              <g transform="translate(258,92)"><rect x="-34" y="-14" rx="10" width="68" height="22" fill="#0b1220"/><text x="0" y="2" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">1.2m · tumataas</text></g>
+            </svg>
+          </div>
+          <div class="alert-card"><span class="alert-ico">⚠</span><div><strong>Pagbaha sa EDSA–Balintawak</strong><br><span class="muted">1.2 m · na-update 2 min na ang nakalipas</span></div></div>
+          <button class="cta">Maghanap ng Ruta <span>→</span></button>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="tag tag-slate">Screen 1 · Home &amp; Live Flood Map</span>
+        <h3>Ang mapa na humihinga</h3>
+        <p>Buong siyudad sa iyong kamay — makikita ang lalim, kulay-coded safety at ang pinakamainit na alerto.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech" id="tech">
+  <div class="sec-head reveal">
+    <span class="kicker">Arkitektura ng Sistema · Tech Stack</span>
+    <h2>Paano dumadaloy ang datos.</h2>
+    <p>Isang simple ngunit solid na pipeline: sensors → server → user.</p>
+  </div>
+  <div class="pipeline reveal">
+    <div class="node">
+      <span class="node-ic">📡</span>
+      <h4>IoT Sensors</h4>
+      <p>Ultrasonic water level + rain gauge sa mga flood-prone areas. Nagpapadala ng datos kada 5 minuto.</p>
+      <i class="node-chip">LoRaWAN / 4G</i>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node">
+      <span class="node-ic">🖥</span>
+      <h4>Back-end Server</h4>
+      <p>REST API na nagco-compute ng flood zone status at dynamic na ruta gamit ang crowd + sensor data.</p>
+      <i class="node-chip">Node.js · PostgreSQL · NoSQL cache</i>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node">
+      <span class="node-ic">📱</span>
+      <h4>Web App</h4>
+      <p>Front-end na nagpapakita ng mapa, alerts, at ruta sa commuter. Real-time sa pamamagitan ng WebSockets.</p>
+      <i class="node-chip">React / HTML · Mapbox · PAGASA API</i>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a class="brand" href="#home"><span class="brand-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M5 12l4-5 3 3 4-6 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>FLOOD<span>-NAV</span></span></a>
+    <p class="foot-note">Isang teknolohikal na solusyon sa pambansang suliraning pagbaha · Para sa final requirement — Socio-Economic Tech Innovation</p>
+    <div class="foot-links"><a href="#home">Home</a><a href="#problem">Problema</a><a href="#screens">Wireframes</a><a href="#tech">Tech Stack</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✓ Salamat sa report! Naka-queue na ito sa mga rescuer.</div>
+
+<script src="script.js"></script>
+</body>
+</html>
